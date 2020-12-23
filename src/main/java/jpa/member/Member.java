@@ -1,4 +1,4 @@
-package jpa.domain;
+package jpa.member;
 
 import java.time.LocalDateTime;
 
@@ -34,4 +34,12 @@ public class Member {
 	@Column
 	@UpdateTimestamp
 	private LocalDateTime modifiedDate;
+
+	protected Member() {
+	}
+
+	public Member(Integer age, String password) {
+		this.age = age;
+		this.password = password;
+	}
 }

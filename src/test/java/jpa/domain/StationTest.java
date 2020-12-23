@@ -13,8 +13,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import jpa.dao.LineRepository;
-import jpa.dao.StationRepository;
+import jpa.line.Line;
+import jpa.line.LineRepository;
+import jpa.station.Station;
+import jpa.station.StationRepository;
 
 @DataJpaTest
 class StationTest {
@@ -144,5 +146,16 @@ class StationTest {
 		stationRepository.flush();
 
 		assertThat(lineNumber3.getStations()).hasSize(1);
+	}
+
+	@Test
+	@DisplayName("Jpa Auditing: 시간 관련 컬럼 상속 테스트")
+	void japAuditingLocalTimeTest() {
+
+		Station expected = new Station("주안역");
+		Station actual = stationRepository.save(expected);
+
+		assertThat(actual.getCreatedDate()).isNotNull();
+		assertThat(actual.getModifiedDate()).isNotNull();
 	}
 }

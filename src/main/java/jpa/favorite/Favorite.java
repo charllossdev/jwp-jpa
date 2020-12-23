@@ -1,4 +1,4 @@
-package jpa.domain;
+package jpa.favorite;
 
 import java.time.LocalDateTime;
 
